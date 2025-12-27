@@ -1,0 +1,162 @@
+:root {
+  /* Palet Warna Modern */
+  --bg-page: #0f172a; /* Biru gelap midnight */
+  --color-menu: #1e293b; /* Slate gelap */
+  --color-box1: #334155; /* Slate medium */
+  --color-box2: #475569; /* Slate light */
+  --color-box3: #64748b; /* Slate lighter */
+
+  --color-hover: #ffffff; /* Putih murni saat hover */
+  --text-light: #f8fafc;
+  --text-dark: #0f172a;
+
+  /* Dimensi */
+  --cube-w: 180px;
+  --cube-h: 55px;
+  --cube-d: 35px;
+}
+
+body {
+  background-color: var(--bg-page);
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* Container & Animasi Rotasi */
+.dropdown-container {
+  position: relative;
+  perspective: 2000px;
+}
+
+.cube-stack-wrapper {
+  transform-style: preserve-3d;
+  transform: rotateX(25deg) rotateY(-25deg);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dropdown-container:hover .cube-stack-wrapper {
+  transform: rotateX(20deg) rotateY(-20deg);
+}
+
+/* Dasar Kubus */
+.cube {
+  position: relative;
+  width: var(--cube-w);
+  height: var(--cube-h);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Mapping Sisi 3D */
+.f-front {
+  transform: translateZ(var(--cube-d));
+}
+.f-back {
+  transform: rotateY(180deg) translateZ(var(--cube-d));
+}
+.f-right {
+  width: calc(var(--cube-d) * 2);
+  transform: rotateY(90deg) translateZ(calc(var(--cube-w) - var(--cube-d)));
+}
+.f-left {
+  width: calc(var(--cube-d) * 2);
+  transform: rotateY(-90deg) translateZ(var(--cube-d));
+}
+.f-top {
+  height: calc(var(--cube-d) * 2);
+  transform: rotateX(90deg) translateZ(var(--cube-d));
+}
+.f-bottom {
+  height: calc(var(--cube-d) * 2);
+  transform: rotateX(-90deg) translateZ(calc(var(--cube-h) - var(--cube-d)));
+}
+
+/* Warna Setiap Box */
+.trigger-cube .face {
+  background: var(--color-menu);
+  color: var(--text-light);
+}
+.box-1 .face {
+  background: var(--color-box1);
+  color: var(--text-light);
+}
+.box-2 .face {
+  background: var(--color-box2);
+  color: var(--text-light);
+}
+.box-3 .face {
+  background: var(--color-box3);
+  color: var(--text-light);
+}
+
+/* --- LOGIC HOVER (Berubah Menjadi Putih) --- */
+.cube:hover {
+  transform: translateZ(30px) scale(1.05);
+  cursor: pointer;
+}
+
+.cube:hover .face {
+  background: var(--color-hover) !important;
+  color: var(--text-dark) !important;
+  border-color: var(--text-dark);
+  /* Efek cahaya halus pada hover putih */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Dropdown Animation */
+.dropdown-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.menu-item {
+  margin-top: 15px;
+  opacity: 0;
+  transform: translateY(-30px) rotateX(-90deg);
+  transition: all 0.5s cubic-bezier(0.5, 1.5, 0.5, 1);
+}
+
+.dropdown-container:hover .menu-item {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+  pointer-events: auto;
+}
+
+.box-1 {
+  margin-top: 65px;
+}
+
+.menu-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.menu-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.menu-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
