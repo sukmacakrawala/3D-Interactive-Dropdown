@@ -3,48 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Interactive Dropdown</title>
+    <title>Interactive Battery Level CSS</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="dropdown-container">
-      <div class="cube-stack-wrapper">
-        <div class="trigger-cube cube">
-          <div class="face f-front">MENU</div>
-          <div class="face f-back"></div>
-          <div class="face f-right"></div>
-          <div class="face f-left"></div>
-          <div class="face f-top"></div>
-          <div class="face f-bottom"></div>
-        </div>
-
-        <ul class="dropdown-menu">
-          <li class="menu-item cube box-1">
-            <div class="face f-front">BOX 1</div>
-            <div class="face f-back"></div>
-            <div class="face f-right"></div>
-            <div class="face f-left"></div>
-            <div class="face f-top"></div>
-            <div class="face f-bottom"></div>
-          </li>
-          <li class="menu-item cube box-2">
-            <div class="face f-front">BOX 2</div>
-            <div class="face f-back"></div>
-            <div class="face f-right"></div>
-            <div class="face f-left"></div>
-            <div class="face f-top"></div>
-            <div class="face f-bottom"></div>
-          </li>
-          <li class="menu-item cube box-3">
-            <div class="face f-front">BOX 3</div>
-            <div class="face f-back"></div>
-            <div class="face f-right"></div>
-            <div class="face f-left"></div>
-            <div class="face f-top"></div>
-            <div class="face f-bottom"></div>
-          </li>
-        </ul>
+    <div class="battery-wrapper">
+      <div class="battery-case">
+        <div id="battery-level" class="battery-level"></div>
       </div>
-    </div>
+      <div id="percentage-text" class="percentage">100%</div>
+      <input type="range" id="battery-slider" min="0" max="100" value="100">
   </body>
+  <script src="script.js"></script>
 </html>
